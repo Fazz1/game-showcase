@@ -7,6 +7,10 @@ const schema = new Schema(
     email: String,
     password: String,
     address: String,
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true
