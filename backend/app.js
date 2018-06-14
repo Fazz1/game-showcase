@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 
@@ -23,7 +24,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(session({
+  secret: 'SESSION_SECRET', 
+  resave: true, 
+  saveUninitialized: true,
+}))
 
 app.use('/', indexRouter);
 
