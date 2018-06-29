@@ -24,7 +24,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../game-showcase-front')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 
 app.use(session({
