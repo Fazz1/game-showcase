@@ -17,6 +17,32 @@ module.exports = {
       })
     }   
   },
+
+  update: async (req, res) => {
+    try {
+      const showcase = await Showcase.findOne({ _id: req.body._id });
+      if (!showcase) {
+        return res.status(400).json({
+          error: 'Can not find this showcase'
+        })
+      }
+
+      const data =  Object.assign({}, req.body);
+      delete data._id;
+
+      const new1 = await Showcase.findOneAndUpdate({ _id: req.body._id }, data, { new: true });
+      return res.json({
+        message: 'Successfully updated showcase',
+        showcase: new1
+      })
+
+    } catch (err) {
+      return res.status(400).json({
+        error: 'something went wrong'
+      })
+    }
+  },
+
   delete: async (req, res) => {
     try {
       const showcase = await Showcase.findOne({ _id: req.body._id });

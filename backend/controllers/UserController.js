@@ -50,7 +50,8 @@ module.exports = {
       })
     }
   },
-  checkAuth: (req, res) => {
+  checkAuth: async (req, res) => {
+    console.log(req.session.user);
     if (req.session.user) {
       return res.json({
         message: 'logged in status'
